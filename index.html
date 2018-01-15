@@ -11,12 +11,24 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <style>
-        body {
-            background-color: peachpuff;
+        h1 {
+            color: #FFFFFF;
+            text-align: center;
         }
+
+        body {
+            background-color: #A1DBDF;
+        }
+        
+        .header {
+            background-color: #0abab5;
+            border: #FFFFFF 2px solid;
+            margin: 0 0 10px 0;
+        }
+
         .box {
-            border: #000000 1px solid;
-            padding: 80px 80px 80px 80px;
+            border: #FFFFFF 2px solid;
+            padding: 60px 60px 60px 60px;
             text-align: center;
         }
         form {
@@ -33,10 +45,30 @@
         #form2 {
             width: 100%;
         }
+
+        .playerTurn {
+            border: goldenrod 2px solid;
+        }
+
+        .chatColorDisconnect {
+            color: red;
+        }
+
+        .chatColorConnect {
+            color: green;
+        }
+
+        .chatColor1 {
+            color: blue;
+        }
+
+        .chatColor2 {
+            color: orange;
+        }
     </style>
 </head>
 <body>
-    <div>
+    <div class = "header">
         <h1>rock paper scissors</h1>
     </div>
     <div class = "container">
@@ -45,19 +77,40 @@
             <div class = "col-md-4">
                     <form class="form-inline" action="/action_page.php">
                         <div class="form-group">
-                          <input type="name" class="form-control" id="name" placeholder="name">
+                          <input type="name" class="form-control" id="nameInput" placeholder="name">
                         </div>
-                        <button type="submit" class="btn btn-default">submit</button>
+                        <button type="submit" class="btn btn-default" id = "addName">submit</button>
                     </form>
             </div>
             <div class = "col-md-4"></div>
         </div>
         <div class = "row">
-            <div class = "col-md-3 box">test</div>
+            <div class = "col-md-3 box" id = "player1Box">
+                <div class = "name1"></div>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Rock</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Paper</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Scissors</button>
+                <div class="panel-body panelStats text-center">
+                        <div class="stats" id="player1Stats">test</div>
+                </div>
+            </div>
             <div class = "col-md-1"></div>
-            <div class = "col-md-3 box">test</div>
+            <div class = "col-md-3 box">
+                <div class="panel panel-default gamePanel">
+                    <h3 class="panel-title text-center" id="waitingNotice"></h3>
+                    <h3 class="panel-title text-center" id="roundOutcome">Rock-Paper-Scissors!</h3>
+                </div>
+            </div>
             <div class = "col-md-1"></div>
-            <div class = "col-md-3 box">test</div>
+            <div class = "col-md-3 box" id = "player2Box">
+                <div class = "name2"></div>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Rock</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Paper</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Scissors</button>
+                <div class="panel-body panelStats text-center">
+                        <div class="stats" id="player2Stats"></div>
+                </div>
+            </div>
             <div class = "col-md-1"></div>
         </div>
         <div class = "row">
@@ -70,9 +123,9 @@
             <div class = "chatsubmit col-md-5">
                 <form class="form-inline" id = "form2" action="/action_page.php">
                     <div class="form-group">
-                        <input type="chat" class="form-control" id="chat" placeholder="chat here">
+                        <input type="chat" class="form-control" id="chatInput" placeholder="chat here">
                     </div>
-                    <button type="send" class="btn btn-default">send</button>
+                    <button type="send" class="btn btn-default" id = "sendButton">send</button>
                 </form>
             </div>
             <div class = "col-md-4"></div>
