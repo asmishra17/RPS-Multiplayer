@@ -282,7 +282,7 @@ $("#player2Box").on("click", ".option", function(event) {
 });
 
 // rpsPlay is the game logic
-function rpsCompare () {
+function rpsPlay () {
     if (player1.choice === "Rock") {
         if (player2.choice === "Rock") {
             database.ref().child("/outcome/").set("Tie game!");
@@ -292,7 +292,7 @@ function rpsCompare () {
             database.ref().child("/outcome/").set("Paper wins!");
             database.ref().child("/players/player1/losses").set(player1.losses + 1);
             database.ref().child("/players/player2/wins").set(player2.wins + 1);
-        } else { // aka scissors
+        } else { // player 2's choice is scissors
             database.ref().child("/outcome/").set("Rock wins!");
             database.ref().child("/players/player1/wins").set(player1.wins + 1);
             database.ref().child("/players/player2/losses").set(player2.losses + 1);
@@ -307,13 +307,27 @@ function rpsCompare () {
             database.ref().child("/outcome/").set("Tie game!");
             database.ref().child("/players/player1/ties").set(player1.ties + 1);
             database.ref().child("/players/player2/ties").set(player2.ties + 1);
-        } else { // scissors
+        } else { // player 2's choice is scissors
             database.ref().child("/outcome/").set("Scissors win!");
             database.ref().child("/players/player1/losses").set(player1.losses + 1);
             database.ref().child("/players/player2/wins").set(player2.wins + 1);
         }
-
-
-
-
-})
+    } else if (player1.choice === "Scissors") {
+       if (player2.choice === "Rock") {
+           database.ref().child("/outcome/").set("Rock wins!");
+           database.ref().child("/players/player1/losses").set(player1.losses + 1);
+           database.ref().child("/players/player2/wins").set(player2.wins + 1);
+       } else if (player2.choice === "Paper") {
+           database.ref().child("/outcome/").set("Scissors win!");
+           database.ref().child("/players/player1/wins").set(player1.wins + 1);
+           database.ref().child("/players/player2/losses").set(player2.losses + 1);
+       } else { // player 2's choice is scissors
+           database.ref().child("/outcome/").set("Tie game!");
+           database.ref().child("/players/player1/ties").set(player1.ties + 1);
+           database.ref().child("/players/player2/ties").set(player2.ties + 1);
+       }
+    }
+    turn = 1;
+    database.ref().child("/turn").set(1);
+}
+});
