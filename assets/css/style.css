@@ -1,0 +1,67 @@
+h1 {
+    color: #FFFFFF;
+    text-align: center;
+}
+
+body {
+    background-color: #A1DBDF;
+}
+
+.header {
+    background-color: #0ABAB5;
+    border: #FFFFFF 2px solid;
+    margin: 0 0 10px 0;
+}
+
+.boxes {
+    margin: auto;
+}
+
+.box {
+    border: #FFFFFF 2px solid;
+    height: 250px;
+    width: 350px;
+    margin: 0px 10px 0px 0px;
+    text-align: center;
+}
+
+form {
+    margin: 0 0 10px 0;
+}
+
+.chatrows {
+    margin: auto;
+}
+
+.chatbox {
+    background-color: #FFFFFF; 
+    margin: 20px 0px 10px 0px;
+    height: 250px;
+    width: 100%;
+    text-align: left;
+    overflow: scroll;
+}
+
+.playerTurn {
+    border: goldenrod 2px solid;
+}
+
+.chatColorDisconnect {
+    color: red;
+}
+
+.chatColorConnect {
+    color: green;
+}
+
+.chatColor1 {
+    color: blue;
+}
+
+.chatColor2 {
+    color: orange;
+}
+
+.helloName {
+    text-align: center;
+}

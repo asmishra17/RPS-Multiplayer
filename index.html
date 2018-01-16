@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,72 +10,20 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- linking my style sheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-    <style>
-        h1 {
-            color: #FFFFFF;
-            text-align: center;
-        }
-
-        body {
-            background-color: #A1DBDF;
-        }
-        
-        .header {
-            background-color: #0abab5;
-            border: #FFFFFF 2px solid;
-            margin: 0 0 10px 0;
-        }
-
-        .box {
-            border: #FFFFFF 2px solid;
-            padding: 60px 60px 60px 60px;
-            text-align: center;
-        }
-        form {
-            margin: 0 0 10px 0;
-        }
-
-        .chatbox {
-            background-color: #FFFFFF; 
-            margin: 20px;
-            width: 450px;
-            height: 200px;
-            text-align: left:
-        }
-        #form2 {
-            width: 100%;
-        }
-
-        .playerTurn {
-            border: goldenrod 2px solid;
-        }
-
-        .chatColorDisconnect {
-            color: red;
-        }
-
-        .chatColorConnect {
-            color: green;
-        }
-
-        .chatColor1 {
-            color: blue;
-        }
-
-        .chatColor2 {
-            color: orange;
-        }
-    </style>
 </head>
+
 <body>
-    <div class = "header">
-        <h1>rock paper scissors</h1>
-    </div>
     <div class = "container">
+
+        <div class = "row">
+            <div class = "header col-md-12">
+                <h1>Rock Paper Scissors</h1>
+            </div>
+        </div>
+
         <div class = "row">
             <div class = "col-md-4"></div>
-            <div class = "col-md-4">
+            <div class = "helloName col-md-4">
                     <form class="form-inline" action="/action_page.php">
                         <div class="form-group">
                           <input type="name" class="form-control" id="nameInput" placeholder="name">
@@ -84,8 +33,9 @@
             </div>
             <div class = "col-md-4"></div>
         </div>
-        <div class = "row">
-            <div class = "col-md-3 box" id = "player1Box">
+
+        <div class = "boxes row">
+            <div class = "col-md-4 box" id = "player1Box">
                 <div class = "name1"></div>
                 <button type="button" class="btn btn-secondary btn-lg btn-block option">Rock</button>
                 <button type="button" class="btn btn-secondary btn-lg btn-block option">Paper</button>
@@ -94,15 +44,16 @@
                         <div class="stats" id="player1Stats"></div>
                 </div>
             </div>
-            <div class = "col-md-1"></div>
-            <div class = "col-md-3 box">
+
+            <div class = "col-md-4 box">
                 <div class="panel panel-default gamePanel">
                     <h3 class="panel-title text-center" id="waitingNotice"></h3>
+                    <br>
                     <h3 class="panel-title text-center" id="roundOutcome">Rock-Paper-Scissors!</h3>
                 </div>
             </div>
-            <div class = "col-md-1"></div>
-            <div class = "col-md-3 box" id = "player2Box">
+
+            <div class = "col-md-4 box" id = "player2Box">
                 <div class = "name2"></div>
                 <button type="button" class="btn btn-secondary btn-lg btn-block option">Rock</button>
                 <button type="button" class="btn btn-secondary btn-lg btn-block option">Paper</button>
@@ -111,16 +62,14 @@
                         <div class="stats" id="player2Stats"></div>
                 </div>
             </div>
-            <div class = "col-md-1"></div>
         </div>
-        <div class = "row">
-            <div class = "col-md-3"></div>
-            <div class = "chatbox col-md-5"></div>
-            <div class = "col-md-4"></div>
+
+        <div class = "chatrows row">
+            <div class = "chatbox col-md-12"></div>
         </div>
-        <div class = "row">
-            <div class = "col-md-3"></div>
-            <div class = "chatsubmit col-md-5">
+
+        <div class = "chatrows row">
+            <div class = "chatsubmit col-md-12">
                 <form class="form-inline" id = "form2" action="/action_page.php">
                     <div class="form-group">
                         <input type="chat" class="form-control" id="chatInput" placeholder="chat here">
@@ -128,10 +77,11 @@
                     <button type="send" class="btn btn-default" id = "sendButton">send</button>
                 </form>
             </div>
-            <div class = "col-md-4"></div>
         </div>
+
     </div>
 </body>
+
 <!-- linking JavaScript and jQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="assets/javascript/app.js"></script>

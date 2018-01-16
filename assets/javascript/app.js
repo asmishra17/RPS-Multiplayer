@@ -2,22 +2,17 @@ $(document).ready(function() {
 
 // *global variables*
 
-// storing objects for the players
 var player1 = null;
 var player2 = null;
 
-// storing the player names
 var name1 = "";
 var name2 = "";
 
-// storing player's name in the browser
 var yourName = "";
 
-// storing player choices
 var player1Choice = "";
 var player2Choice = "";
 
-// storing whose turn it is
 var turn = 1;
 
 // *firebase related*
@@ -197,6 +192,8 @@ $("#addName").on("click", function(event) {
 
             // if this user disconnects, remove user
             database.ref("/players/player1").onDisconnect().remove();
+
+            $(".helloName").append(`Hello ${yourName}!`);
         } else if ( (player1 !== null) && (player2 === null) ) {
             yourName = $("#nameInput").val().trim();
             player2 = {
@@ -209,6 +206,8 @@ $("#addName").on("click", function(event) {
 
             database.ref().child("/players/player2").set(player2);
             database.ref("/players/player2").onDisconnect().remove();
+
+            $(".helloName").append(`Hello ${yourName}!`);
         }
 
         // add a user joined message to the chat
