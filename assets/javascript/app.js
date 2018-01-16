@@ -119,7 +119,7 @@ database.ref("/players/").on("child_removed", function (snapshot) {
 
 database.ref("/chat/").on("child_added", function (snapshot) {
     var chatMsg = snapshot.val();
-    var chatEntry = $("<div>").html(chatMsg);
+    var chatEntry = $("<div>").text(chatMsg);
 
     // change the color of the chat message depending on user or connect/disconnect event
     if (chatMsg.includes("disconnected")) {
@@ -132,8 +132,8 @@ database.ref("/chat/").on("child_added", function (snapshot) {
         chatEntry.addClass("chatColor2");
     }
 
-    $("#chatbox").append(chatEntry);
-    //$("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+    $(".chatbox").append(chatEntry);
+    $(".chatbox").scrollTop($(".chatbox")[0].scrollHeight);
 });
 
 // attach a listener to the database /turn/ node to listen for any changes
@@ -232,7 +232,8 @@ $("#sendButton").on("click", function(event) {
     // make sure player exists and box is non-empty
     if ( (yourName !== "") && ($("#chatInput").val().trim( ) !== "" )) {
         // get message from input box and reset input box
-        var msg = `${yourName}:${$("#chatInput").val().trim()}`;
+        var msg = `${yourName}: ${$("#chatInput").val().trim()}`;
+        $("#chatInput").val("");
 
         // get a key for the new chat entry
         var chatKey = database.ref().child("/chat/").push().key;
@@ -241,5 +242,78 @@ $("#sendButton").on("click", function(event) {
         database.ref("/chat/" + chatKey).set(msg);
     }
 });
+
+// monitor player 1's selection
+$("#player1Box").on("click", ".option", function(event) {
+    event.preventDefault();
+
+    // make selections when both players are in the game
+    if (player1 && player2 && (yourName === player1.name) && (turn === 1) ) {
+        // record player1's choice 
+        var choice = $(this).text().trim();
+
+        // record player choice in the database
+        player1Choice = choice;
+        database.ref().child("/players/player1/choice").set(choice);
+
+        // set the turn value to 2
+        turn = 2;
+        database.ref().child("/turn").set(2);
+    }
+});
+
+// monitor player 2's selection
+
+$("#player2Box").on("click", ".option", function(event) {
+    event.preventDefault();
+
+    // make selections when both players are in the game
+    if (player1 && player2 && (yourName === player2.name) && (turn === 2) ) {
+        // record player 2's choice
+        var choice = $(this).text().trim();
+
+        // record player choice in the database
+        player2Choice = choice;
+        database.ref().child("/players/player2/choice").set(choice);
+
+        //compare choices and record the outcome
+        rpsPlay();
+    }
+});
+
+// rpsPlay is the game logic
+function rpsCompare () {
+    if (player1.choice === "Rock") {
+        if (player2.choice === "Rock") {
+            database.ref().child("/outcome/").set("Tie game!");
+            database.ref().child("/players/player1/ties").set(player1.ties + 1);
+            database.ref().child("/players/player2/ties").set(player2.ties + 1);
+        } else if (player2.choice === "Paper") {
+            database.ref().child("/outcome/").set("Paper wins!");
+            database.ref().child("/players/player1/losses").set(player1.losses + 1);
+            database.ref().child("/players/player2/wins").set(player2.wins + 1);
+        } else { // aka scissors
+            database.ref().child("/outcome/").set("Rock wins!");
+            database.ref().child("/players/player1/wins").set(player1.wins + 1);
+            database.ref().child("/players/player2/losses").set(player2.losses + 1);
+        }
+    } else if (player1.choice === "Paper") {
+    
+        if (player2.choice === "Rock") {
+            database.ref().child("/outcome/").set("Paper wins!");
+            database.ref().child("/players/player1/wins").set(player1.wins + 1);
+            database.ref().child("/players/player2/ties").set(player2.ties + 1);
+        } else if (player2.choice === "Paper") {
+            database.ref().child("/outcome/").set("Tie game!");
+            database.ref().child("/players/player1/ties").set(player1.ties + 1);
+            database.ref().child("/players/player2/ties").set(player2.ties + 1);
+        } else { // scissors
+            database.ref().child("/outcome/").set("Scissors win!");
+            database.ref().child("/players/player1/losses").set(player1.losses + 1);
+            database.ref().child("/players/player2/wins").set(player2.wins + 1);
+        }
+
+
+
 
 })
