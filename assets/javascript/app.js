@@ -278,7 +278,7 @@ function rpsPlay () {
         if (player2.choice === "Rock") {
             database.ref().child("/outcome/").set(`${player1.name} chose Paper and ${player2.name} chose Rock. Paper wins!`);
             database.ref().child("/players/player1/wins").set(player1.wins + 1);
-            database.ref().child("/players/player2/ties").set(player2.losses + 1);
+            database.ref().child("/players/player2/losses").set(player2.losses + 1);
         } else if (player2.choice === "Paper") {
             database.ref().child("/outcome/").set("Both players chose Paper. Tie game!");
             database.ref().child("/players/player1/ties").set(player1.ties + 1);
