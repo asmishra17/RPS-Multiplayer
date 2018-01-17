@@ -63,5 +63,7 @@ form {
 }
 
 .helloName {
-    text-align: center;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
 }

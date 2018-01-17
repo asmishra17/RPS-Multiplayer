@@ -10,9 +10,6 @@ var name2 = "";
 
 var yourName = "";
 
-var player1Choice = "";
-var player2Choice = "";
-
 var turn = 1;
 
 // *firebase related*
@@ -237,7 +234,6 @@ $("#player1Box").on("click", ".option", function(event) {
 
         var choice = $(this).text().trim();
 
-        player1Choice = choice;
         database.ref().child("/players/player1/choice").set(choice);
 
         turn = 2;
@@ -253,7 +249,6 @@ $("#player2Box").on("click", ".option", function(event) {
 
         var choice = $(this).text().trim();
 
-        player2Choice = choice;
         database.ref().child("/players/player2/choice").set(choice);
 
         // compare user choices, show outcome
