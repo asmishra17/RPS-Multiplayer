@@ -163,7 +163,7 @@ $("#addName").on("click", function(event) {
                 wins: 0,
                 losses: 0,
                 ties: 0,
-                choice: ""
+                choice: "",
             };
             
             // add player1 to the database
@@ -176,7 +176,7 @@ $("#addName").on("click", function(event) {
             database.ref("/players/player1").onDisconnect().remove();
 
             // append name to top of screen
-            $(".helloName").append(`Hello ${yourName}!`);
+            $(".helloName").append(`Hello ${yourName}! You are Player 1`);
 
         } else if ( (player1 !== null) && (player2 === null) ) {
             yourName = $("#nameInput").val().trim();
@@ -185,14 +185,15 @@ $("#addName").on("click", function(event) {
                 wins: 0,
                 losses: 0,
                 ties: 0,
-                choice: ""
+                choice: "",
+                number: "Player 2"
             };
 
             database.ref().child("/players/player2").set(player2);
 
             database.ref("/players/player2").onDisconnect().remove();
 
-            $(".helloName").append(`Hello ${yourName}!`);
+            $(".helloName").append(`Hello ${yourName}! You are Player 2`);
         }
 
         // add a user joined message to the chat
