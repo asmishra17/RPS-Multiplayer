@@ -47,19 +47,19 @@ form {
 }
 
 .chatColorDisconnect {
-    color: red;
+    color: #DE4B1D;
 }
 
 .chatColorConnect {
-    color: green;
+    color: #47C74F;
 }
 
 .chatColor1 {
-    color: blue;
+    color: #56D8E8;
 }
 
 .chatColor2 {
-    color: orange;
+    color: #C182D3;
 }
 
 .helloName {
